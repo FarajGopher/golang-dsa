@@ -82,25 +82,49 @@ func (s *Stack)Reverse(){
 	s.InsertAtBottom(top)
 }
 
+func (s *Stack)SortedInserted(n int) {
+	if len(s.item)== 0 || n > s.item[len(s.item)-1] {
+		s.Push(n)
+		return
+	}
+
+	top := s.item[len(s.item)-1]
+	s.Pop()
+	s.SortedInserted(n)
+	s.Push(top)
+}
+
+//sort a stack
+func (s *Stack)Sort(){
+	if len(s.item) == 0{
+		return 
+	}
+	top := s.item[len(s.item)-1]
+	s.Pop()
+	s.Sort()
+	s.SortedInserted(top)
+}
+
 func main() {
 	stack := Stack{
 		item: nil,
 	}
-	stack.Push(1)
-	stack.Push(2)
-	stack.Push(3)
-	stack.Push(4)
 	stack.Push(5)
-	stack.Push(6)
-	stack.Push(7)
-	stack.Push(8)
-	stack.Push(9)
+	stack.Push(3)
 	stack.Push(10)
+	stack.Push(4)
+	stack.Push(8)
+	stack.Push(6)
+	stack.Push(8)
+	stack.Push(7)
+	stack.Push(2)
+	stack.Push(1)
 	stack.Pop()
 	stack.RemoveFirstElem()
 	stack.RemoveMiddleElem()
 	stack.RamoveAt(2)
 	stack.RemoveValue(6)
 	stack.Reverse()
+	stack.Sort()
 	fmt.Println("stack: ", stack.item)
 }
