@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 
+//**** time complexity O(log n)
+
+
 func main() {
 	arr := []int{1, 2, 3, 4, 5}
 	find := 4
@@ -9,7 +12,8 @@ func main() {
 	max := len(arr) - 1
 	found := -1
 	for min <= max{
-		mid := (min + max) / 2
+		// mid := (min + max) / 2
+		mid := min + ((max-min)/2)
 		if arr[mid] == find {
 			found = mid 
 			break
